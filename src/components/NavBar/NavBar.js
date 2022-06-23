@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NavBar.css"
+import CartWidget from "../CartWidget/CartWidget"
 
 const NavBar = () => {
     const [ isOpen, setIsOpen ] = useState(false);
@@ -11,6 +12,9 @@ const NavBar = () => {
                 <a href="/About">About</a>
                 <a href="/Service">Service</a>
                 <a href="/Contact">Contact</a>
+            </div>
+            <div>
+                    <CartWidget/>
             </div>
             <div className={`nav-toggle ${isOpen && "open"}`}
              onClick={ () => setIsOpen(!isOpen)}>
