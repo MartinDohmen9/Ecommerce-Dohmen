@@ -6,7 +6,7 @@ const ItemCount = ({stock , url, producto}) => {
     const [contador, setContador] = useState(0);
 
     const count = (value) => {
-        const result = contador + value
+        const result = contador + value;
         if(result<=stock && result >= 0){
             setContador(contador + value)
         };
@@ -24,7 +24,7 @@ const ItemCount = ({stock , url, producto}) => {
                 
                 <button className="btn" onClick={() => count(-1)}>Resta</button>
                 <h1>{contador} | {stock}</h1>
-                <button className="btn" onClick={() => count(-1)}>Suma</button>
+                <button className="btn" onClick={() => count(+1)}>Suma</button>
 
             </div>
 
