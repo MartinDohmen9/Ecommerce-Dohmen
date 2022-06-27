@@ -1,5 +1,6 @@
 import shopping_cart from "../../assets/images/shopping_cart.png"
 import "./styles.css"
+import "../ItemCount/ItemCount"
 
 const CartWidget = () => {
     return(
