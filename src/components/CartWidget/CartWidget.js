@@ -4,7 +4,7 @@ import "../ItemCount/ItemCount"
 
 const CartWidget = () => {
     return(
-    <div className="container">
+    <div className="containerCart">
       <button className="cart-btn">
         <img src={shopping_cart} alt="Cart Icon" className="cart-widget" />
       </button>
