@@ -1,20 +1,20 @@
 import {React, useState }from "react";
 import "./styles.css";
-import {Link} from 'react-router-dom'
 
-const Item = ({product}) => {
-
+const ItemDetail = ({product}) => {
+    
     const [contador, setContador] = useState(0);
-
+    
     const count = (value) => {
         const result = contador + value;
         if(result<=stock && result >= 0){
             setContador(contador + value)
         };
     };
-
-    const {producto, stock, url, id} = product
-
+    
+    const {producto, stock, url} = product
+    
+    
     return(
         <div>
 
@@ -24,7 +24,8 @@ const Item = ({product}) => {
 
             <div className="containerItem">
 
-                <Link to={`/product/${product.id}`} key={id}>Mirar Detalle</Link>
+                <text>Detalle del producto</text>
+
                 <button className="btn" onClick={() => count(-1)}>Resta</button>
                 <h1>{contador} | {stock}</h1>
                 <button className="btn" onClick={() => count(+1)}>Suma</button>
@@ -36,4 +37,4 @@ const Item = ({product}) => {
     )
 }
 
-export default Item;
+export default ItemDetail;

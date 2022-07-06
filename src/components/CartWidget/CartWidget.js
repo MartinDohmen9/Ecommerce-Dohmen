@@ -1,4 +1,4 @@
-import shopping_cart from "../../assets/images/shopping_cart.png"
+import shopping_cart from "../../shopping_cart.png"
 import "./styles.css"
 import "../ItemCount/ItemCount"
 
