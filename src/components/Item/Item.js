@@ -1,6 +1,7 @@
 import {React, useState }from "react";
 import "./styles.css";
 import {Link} from 'react-router-dom'
+import {TableCell} from '@mui/material'
 
 const Item = ({product}) => {
 
@@ -16,9 +17,9 @@ const Item = ({product}) => {
     const {producto, stock, url, id} = product
 
     return(
-        <div>
+        <TableCell>
 
-            <h1>{producto}</h1>
+            <h2>{producto}</h2>
             
             <img className="item" src={url} alt={producto}/>
 
@@ -32,7 +33,7 @@ const Item = ({product}) => {
             </div>
 
             <button className="btn-agregar" >agregar item</button>
-        </div>
+        </TableCell>
     )
 }
 

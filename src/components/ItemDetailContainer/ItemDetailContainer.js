@@ -9,34 +9,27 @@ const ItemDetailContainer = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
-    const {productId} = useParams()
+const {productId} = useParams()
 
-  const getProducts = async () => 
-  {
-    try
-    {
-      const response = await getProd
-      setProducts(response)
-    }
-    catch(error)
-    {
-      console.log("Hubo un error:")
-      console.log(error)
-    }
-    finally
-    {
-      setLoading(false)
-    }
-  }
-
-  useEffect
-      (() => {getProducts()} ,[])
+    useEffect
+    (() => {
+      getProd(productId)
+      .then((res) => {
+          setProducts(res);
+      })
+      .catch((error) => {
+          console.log(error);
+      })
+      .finally(() => {
+          setLoading(false);
+    });
+    },[productId])
 
   return (
 
     <div className="landing">
       
-      {loading ? <p>Cargando...</p> : <ItemDetail product={products[parseInt(productId)]}/>} 
+      {loading ? <p>Cargando...</p> : <ItemDetail product={products}/>} 
 
     </div>
 

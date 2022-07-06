@@ -1,8 +1,9 @@
 import  React, {useState , useEffect} from "react";
 import "./styles.css";
 import ItemList from "../ItemList/ItemList";
-import { getData } from '../../Mocks/productsData.js';
+import { getProds } from '../../Mocks/productsData.js';
 import {useParams} from 'react-router-dom';
+import {TableContainer} from '@mui/material'
 
 const ItemListContainer = ({greeting}) => {
 
@@ -11,7 +12,7 @@ const ItemListContainer = ({greeting}) => {
 
   const { categoryId } = useParams;
 
-  const getProducts = async () => 
+/*  const getProducts = async () => 
   {
     try
     {
@@ -32,8 +33,19 @@ const ItemListContainer = ({greeting}) => {
   useEffect
       (() => {getProducts()
       },[])
-
-      
+*/
+  useEffect (() => {
+    getProds(categoryId)
+    .then((res) => {
+        setProducts(res);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        setLoading(false);
+  });
+  },[categoryId])
 
   return (
     <div>
@@ -42,11 +54,9 @@ const ItemListContainer = ({greeting}) => {
       <span>{greeting}</span>
 
     </div>
-    <div className="landing">
       
       {loading ? <p>Cargando...</p> : <ItemList productList={products}/> } 
 
-    </div>
     </div>
   );
 };

@@ -1,0 +1,32 @@
+.btn{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.containerItem {
+
+    justify-content: center;
+}
+
+
+
+.item{
+    width: 300px;
+    height: 400px;
+}
+
+.btn-agregar{
+    width: 300px;
+    height: 50px;
+    margin: 10px; 
+}
+
+h1{
+    justify-content: center;
+    font-size: xx-large;
+} 
+
+.titulo{
+    justify-content: center;
+}
