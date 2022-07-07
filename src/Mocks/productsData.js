@@ -122,7 +122,9 @@ export const getProds = (categoryId) => {
         );
         setTimeout(() => {
             categoryId ? resolve(productosFiltrados) : resolve(productos);
+
         }, 2000);
+
     });
 };
 

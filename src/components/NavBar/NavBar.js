@@ -3,6 +3,7 @@ import "./NavBar.css"
 import CartWidget from "../CartWidget/CartWidget"
 import {Link} from "react-router-dom"
 
+
 const NavBar = () => {
 
     const categories = [
@@ -20,7 +21,7 @@ const NavBar = () => {
                 {categories.map((category)=> <Link key={category.id} to={category.route}>{category.nombre}</Link>)}
             </div>
             <div>
-                    <CartWidget/>
+                <CartWidget/>
             </div>
             <div className={`nav-toggle ${isOpen && "open"}`}
              onClick={ () => setIsOpen(!isOpen)}>

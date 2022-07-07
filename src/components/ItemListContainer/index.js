@@ -3,14 +3,13 @@ import "./styles.css";
 import ItemList from "../ItemList/ItemList";
 import { getProds } from '../../Mocks/productsData.js';
 import {useParams} from 'react-router-dom';
-import {TableContainer} from '@mui/material'
 
 const ItemListContainer = ({greeting}) => {
 
   const [products, setProducts] = useState([])
   const [loading, setLoading]=useState(true)
 
-  const { categoryId } = useParams;
+  const {categoryId} = useParams();
 
 /*  const getProducts = async () => 
   {
@@ -46,6 +45,8 @@ const ItemListContainer = ({greeting}) => {
         setLoading(false);
   });
   },[categoryId])
+
+console.log(categoryId)
 
   return (
     <div>
