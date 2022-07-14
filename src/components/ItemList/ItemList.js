@@ -13,7 +13,7 @@ const ItemList = ({productList}) => {
     <Container fixed>
 
       <ThemeProvider theme={theme}>
-        <Typography align='center' variant="h3">Lista de productos</Typography>
+        <Typography align='center' variant="h4">Lista de productos</Typography>
       </ThemeProvider>
 
         <div className='containerItem'>

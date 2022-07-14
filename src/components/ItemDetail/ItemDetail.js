@@ -1,38 +1,44 @@
-import {React, useState }from "react";
+import {React, useState}from "react";
 import "./styles.css";
+import ItemCount from "../ItemCount/ItemCount"
+import { Container} from '@mui/system'
+import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({product}) => {
     
-    const [contador, setContador] = useState(0);
-    
-    const count = (value) => {
-        const result = contador + value;
-        if(result<=stock && result >= 0){
-            setContador(contador + value)
-        };
-    };
-    
-    const {producto, stock, url} = product
-    
-    
+    const {producto, url} = product;
+    const [finalizado, setFinalizado] = useState(false)
+
+    const finalizar = () => {
+        setFinalizado(true);
+    }
+
     return(
-        <div>
+        <div className="containerItem">
+        <Container maxWidth="xs">
+
+        <div className="container">        
 
             <h1>{producto}</h1>
-            
+
+        </div>
+
+        <div className="container">     
+           
             <img className="item" src={url} alt={producto}/>
 
-            <div className="containerItem">
+        </div>
+        
+            {finalizado ? <Link to="/cart"><button>Finalizar compra</button></Link>
+             : <ItemCount product={product} finalizar={finalizar}></ItemCount>}
 
-                <text>Detalle del producto</text>
-
-                <button className="btn" onClick={() => count(-1)}>Resta</button>
-                <h1>{contador} | {stock}</h1>
-                <button className="btn" onClick={() => count(+1)}>Suma</button>
-
-            </div>
-
-            <button className="btn-agregar" >agregar item</button>
+        </Container>
+        <Container maxWidth="xs">
+                    <Typography align='center' variant="h5">
+                    Detlla del producto
+                </Typography>
+        </Container>
         </div>
     )
 }

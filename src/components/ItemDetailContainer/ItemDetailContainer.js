@@ -3,6 +3,7 @@ import "./styles.css";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getProd } from '../../Mocks/productsData.js'
 import { useParams} from 'react-router-dom'
+import { Container } from "@mui/material";
 
 const ItemDetailContainer = () => {
 
@@ -27,11 +28,11 @@ const {productId} = useParams()
 
   return (
 
-    <div className="landing">
+    <Container>
       
       {loading ? <p>Cargando...</p> : <ItemDetail product={products}/>} 
 
-    </div>
+    </Container>
 
   );
 };
