@@ -9,9 +9,12 @@ const ItemDetail = ({product}) => {
     
     const {producto, url} = product;
     const [finalizado, setFinalizado] = useState(false)
+    const [almacena, setAlmacena] = useState(0)
 
-    const finalizar = () => {
+    const onAdd = (cant) => {
         setFinalizado(true);
+        setAlmacena(cant);
+        console.log('se agregaron ' + cant);
     }
 
     return(
@@ -31,7 +34,7 @@ const ItemDetail = ({product}) => {
         </div>
         
             {finalizado ? <Link to="/cart"><button>Finalizar compra</button></Link>
-             : <ItemCount product={product} finalizar={finalizar}></ItemCount>}
+             : <ItemCount product={product} onAdd={onAdd}></ItemCount>}
 
         </Container>
         <Container maxWidth="xs">

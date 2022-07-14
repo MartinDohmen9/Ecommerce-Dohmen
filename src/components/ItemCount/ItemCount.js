@@ -1,14 +1,10 @@
 import {React, useState }from "react";
 import "./styles.css";
 
-const ItemCount = ({product, finalizar}) => {
+const ItemCount = ({product, onAdd}) => {
 
     const [contador, setContador] = useState(0);
     
-    const agregarItem = () =>{
-        finalizar();
-    }
-
     const count = (value) => {
         const result = contador + value;
         if(result<=stock && result >= 0){
@@ -31,7 +27,7 @@ const ItemCount = ({product, finalizar}) => {
 
             <div className="container">
 
-                <button className="btn-agregar" onClick={agregarItem}>Agregar item</button>
+                <button className="btn-agregar" onClick={() => onAdd(contador)}>Agregar item</button>
 
             </div>
 
