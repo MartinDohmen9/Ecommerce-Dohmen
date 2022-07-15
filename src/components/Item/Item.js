@@ -15,11 +15,6 @@ const Item = ({product}) => {
             <Link to={`/product/${product.id}`} key={id}><h2>{producto}</h2></Link>
             <img className="item" src={url} alt={producto}/>
 
-            <div className="containerItem">
-
-            <ItemCount product={product}></ItemCount>
-
-            </div>
 
         </TableCell>
     )
