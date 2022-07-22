@@ -12,10 +12,6 @@ const ItemList = ({productList}) => {
   return (
     <Container fixed>
 
-      <ThemeProvider theme={theme}>
-        <Typography align='center' variant="h4">Lista de productos</Typography>
-      </ThemeProvider>
-
         <div className='containerItem'>
           <Grid container spacing={{ xs: 4, md: 4 }} columns={{}}>
             {productList.map((product)=>

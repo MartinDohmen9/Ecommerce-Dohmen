@@ -1,8 +1,11 @@
 import  React, {useState , useEffect} from "react";
 import "./styles.css";
 import ItemList from "../ItemList/ItemList";
-import { getProds } from '../../Mocks/productsData.js';
 import {useParams} from 'react-router-dom';
+import {db} from "../../firebase/firebase";
+import {getDocs, collection, query, where} from "firebase/firestore";
+
+console.log(db);
 
 const ItemListContainer = ({greeting}) => {
 
@@ -11,30 +14,30 @@ const ItemListContainer = ({greeting}) => {
 
   const {categoryId} = useParams();
 
-/*  const getProducts = async () => 
-  {
-    try
-    {
-      const response = await getData
-      setProducts(response)
-    }
-    catch(error)
-    {
-      console.log("Hubo un error:")
-      console.log(error)
-    }
-    finally
-    {
-      setLoading(false)
-    }
-  }
-
-  useEffect
-      (() => {getProducts()
-      },[])
-*/
   useEffect (() => {
-    getProds(categoryId)
+
+    const q = categoryId 
+    ? query(collection(db,'itemCollection'), where("category", "==", categoryId))
+    : collection(db, 'itemCollection');
+
+    getDocs(q)
+    .then(res => {
+      const list = res.docs.map(product => {
+        return {
+          id: product.id,
+          ...product.data(),
+
+        }
+      })
+      console.log(list)
+      setProducts(list);
+    })
+    .finally(() => {
+      setLoading(false);})
+
+
+
+    /*getProds(categoryId)
     .then((res) => {
         setProducts(res);
     })
@@ -43,7 +46,7 @@ const ItemListContainer = ({greeting}) => {
     })
     .finally(() => {
         setLoading(false);
-  });
+  });*/
   },[categoryId])
 
 console.log(categoryId)
@@ -55,13 +58,13 @@ console.log(categoryId)
       <span>{greeting}</span>
 
     </div>
-      
+    
+    <div className="centrando">
       {loading ? <p>Cargando...</p> : <ItemList productList={products}/> } 
+    </div>
 
     </div>
   );
 };
 
 export default ItemListContainer;
-
-
