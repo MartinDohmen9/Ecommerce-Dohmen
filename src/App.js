@@ -7,8 +7,6 @@ import CartProvider from './context/cartContext';
 
 const App = () => {
 
-  
-
   return (
     <>
     <BrowserRouter>

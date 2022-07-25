@@ -41,9 +41,13 @@ const CartProvider = (props) => {
         );
     };
 
+    const terminarCompra = () => {
+        setCart([]);
+    }
+
     return (
         <CartContext.Provider
-            value={{ cart, addToCart, deleteItem, calcularTotal }}
+            value={{ cart, addToCart, deleteItem, calcularTotal, terminarCompra }}
         >
             {props.children}
         </CartContext.Provider>

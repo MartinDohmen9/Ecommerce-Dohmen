@@ -1,11 +1,20 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { CartContext } from '../../context/cartContext';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, deleteItem, calcularTotal } = useContext(CartContext);
-    // const total = calcularTotal()
-    //console.log(cart);
+    const { cart, deleteItem, calcularTotal, terminarCompra } = useContext(CartContext);
+
+    const finalizarCompra = () => {
+        const ventasCollection = collection(db, 'ventas');
+        addDoc(ventasCollection, {
+            items: cart,
+            total: calcularTotal(),
+            date: serverTimestamp()
+        });
+    }
 
     if (cart.length === 0) {
         return <h2>Está vacío tu carrito, andá a comprar</h2>;
@@ -36,6 +45,7 @@ const Cart = () => {
                     </div>
                 ))}
                 <h3>Total: $ {calcularTotal()} </h3>
+                <Link to="/"><button onClick={() => {finalizarCompra(); terminarCompra();}}>Finalizar Compra</button></Link>
             </div>
         </div>
     );

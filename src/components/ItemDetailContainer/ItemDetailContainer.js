@@ -1,21 +1,35 @@
 import  React, {useState , useEffect} from "react";
 import "./styles.css";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { getProd } from '../../Mocks/productsData.js'
 import { useParams} from 'react-router-dom'
 import { Container } from "@mui/material";
+import {doc, getDoc, collection} from 'firebase/firestore'
+import {db} from "../../firebase/firebase";
 
 const ItemDetailContainer = () => {
 
-  const [products, setProducts] = useState([])
+  const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(true)
 
 
 const {productId} = useParams()
 
-    useEffect
-    (() => {
-      getProd(productId)
+    useEffect(() => {
+
+      const itemCollection = collection(db,"itemCollection");
+      const refDoc = doc(itemCollection,productId);
+
+      getDoc(refDoc)
+      .then(res => {
+        setProduct({
+          id: res.id,
+          ...res.data(),
+        })
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+      /*getProd(productId)
       .then((res) => {
           setProducts(res);
       })
@@ -25,13 +39,13 @@ const {productId} = useParams()
       .finally(() => {
           setLoading(false);
     });
-    },[productId])
+  */},[productId])
 
   return (
 
     <Container>
       
-      {loading ? <p>Cargando...</p> : <ItemDetail product={products}/>} 
+      {loading ? <p>Cargando...</p> : <ItemDetail product={product}/>} 
 
     </Container>
 

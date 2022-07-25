@@ -27,7 +27,7 @@ const ItemCount = ({product, onAdd}) => {
 
             <div className="container">
 
-                <button className="btn-agregar" onClick={() => onAdd(contador)}>Agregar item</button>
+                <button className="btn-agregar" onClick={() => {onAdd(contador); setContador(0)}}>Agregar item</button>
 
             </div>
 
