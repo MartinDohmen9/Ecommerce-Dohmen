@@ -45,16 +45,6 @@ const ItemListContainer = ({greeting}) => {
     console.log(ventas)
   })
 
-    /*getProds(categoryId)
-    .then((res) => {
-        setProducts(res);
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-    .finally(() => {
-        setLoading(false);
-  });*/
   },[categoryId])
 
 console.log(categoryId)
